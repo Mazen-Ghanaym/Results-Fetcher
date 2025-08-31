@@ -3,5 +3,5 @@ __pycache__/
 .env
 .vscode/
 *.xlsx
-*.txt
+input.txt
 
