@@ -9,8 +9,8 @@ A simple Flask web app that fetches Codeforces contest standings and generates E
 2. **Clone and setup**
 
    ```bash
-   git clone https://github.com/Mazen-Ghanayem/contest-results-fetcher.git
-   cd contest-results-fetcher
+   git clone https://github.com/Mazen-Ghanayem/Results-Fetcher.git
+   cd Results-Fetcher
    pip install -r requirements.txt
    ```
 
