@@ -87,6 +87,7 @@ class CodeforcesAPI:
         # Respect the rate limit.
         current_time = time.time()
         time_since_last_request = current_time - self.last_request_time
+        # Wait until the next request is allowed
         if time_since_last_request < self.REQUEST_INTERVAL:
             time.sleep(self.REQUEST_INTERVAL - time_since_last_request)
         
@@ -111,7 +112,7 @@ class CodeforcesAPI:
         Args:
             contest_id: The contest ID.
             from_rank: Starting rank position.
-            count: Number of standings to return.
+            count: Number of rows to return.
             show_unofficial: Whether to show unofficial participants.
             
         Returns:
@@ -134,8 +135,8 @@ def process_contest_data(contest_id: int, handles_text: str) -> str:
     
     Args:
         contest_id: The contest ID to fetch standings from
-        handles_text: Text containing handles (one per line)
-        
+        handles_text: Text containing handles (one per line) and there might be empty lines
+
     Returns:
         Path to the generated Excel file
     """
@@ -216,4 +217,4 @@ def process():
 
 if __name__ == '__main__':
     # For development
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run()
