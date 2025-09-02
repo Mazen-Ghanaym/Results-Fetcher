@@ -103,7 +103,7 @@ class CodeforcesAPI:
             self.last_request_time = time.time()
             return response.json()
         except requests.exceptions.RequestException as e:
-            return {"status": "FAILED", "comment": f"HTTP Request failed: {e}"}
+            return {"status": "FAILED", "comment": f"HTTP Request failed: Check contest ID and try again."}
 
     def get_contest_standings(self, contest_id: int, from_rank: int = -1, count: int = -1, show_unofficial: bool = False) -> Dict[str, Any]:
         """
