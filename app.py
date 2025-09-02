@@ -129,13 +129,14 @@ class CodeforcesAPI:
             params["showUnofficial"] = str(show_unofficial).lower()
         return self._make_request("contest.standings", params)
 
-def process_contest_data(contest_id: int, handles_text: str) -> str:
+def process_contest_data(contest_id: int, handles_text: str, show_unofficial: bool = True) -> str:
     """
     Process contest data and generate Excel file.
     
     Args:
         contest_id: The contest ID to fetch standings from
         handles_text: Text containing handles (one per line) and there might be empty lines
+        show_unofficial: Whether to include unofficial participants in the results
 
     Returns:
         Path to the generated Excel file
@@ -150,7 +151,7 @@ def process_contest_data(contest_id: int, handles_text: str) -> str:
         api_client = CodeforcesAPI()
     
     # Get contest standings
-    standings = api_client.get_contest_standings(contest_id=contest_id, show_unofficial=True)
+    standings = api_client.get_contest_standings(contest_id=contest_id, show_unofficial=show_unofficial)
     contestants = {}
     
     if standings.get("status") == "OK":
@@ -188,6 +189,7 @@ def process():
     try:
         contest_id = request.form.get('contest_id')
         handles_text = request.form.get('handles')
+        show_unofficial = request.form.get('show_unofficial') == 'on'  # Checkbox value
         
         if not contest_id or not handles_text:
             flash('Please provide both contest ID and handles', 'error')
@@ -201,7 +203,7 @@ def process():
             return redirect(url_for('index'))
         
         # Process the data and generate Excel file
-        excel_file_path = process_contest_data(contest_id, handles_text)
+        excel_file_path = process_contest_data(contest_id, handles_text, show_unofficial)
         
         # Send the file to the user
         return send_file(
