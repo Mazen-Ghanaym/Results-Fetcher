@@ -44,3 +44,11 @@ Get API credentials from [Codeforces API Settings](https://codeforces.com/settin
 - Fetches scores from Codeforces
 - Generates Excel file with Handle and Points columns
 - Preserves empty lines (shows as empty handle with 0 points)
+
+## Invite CFetcher
+
+If the contest is private, you need to invite the user **CFetcher** to the contest to allow access to the results.
+
+- Go to the contest and make sure you have the manager role in the contest.
+- Inside the contest you will find the invitations section in the right sidebar.
+- Click the Manage Invitations and invite the user **CFetcher**.
