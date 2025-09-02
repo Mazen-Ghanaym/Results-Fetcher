@@ -132,6 +132,18 @@
         color: #6c757d;
         line-height: 1.4;
       }
+
+      input[type="checkbox"] {
+        margin-right: 8px;
+        transform: scale(1.2);
+      }
+
+      label:has(input[type="checkbox"]) {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        margin-bottom: 8px;
+      }
     </style>
   </head>
   <body>
@@ -183,6 +195,16 @@
               zyadHany<br />
               Mohamed_Maher
             </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>
+            <input type="checkbox" id="show_unofficial" name="show_unofficial" checked>
+            Show Unofficial Participants
+          </label>
+          <div class="help-text">
+            Include unofficial participants (like out-of-competition or virtual participants) in the results.
           </div>
         </div>
 
